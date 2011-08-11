@@ -35,6 +35,7 @@ sub warning {
 	return if $opt->{quiet};
 	#warn ("Warning: ", @_);
 	print YELLOW ("Warning: ", @_);
+        print "\n" if defined $opt->{say};
 	print "";
 }
 
@@ -52,6 +53,7 @@ sub debug {
 	#print "TEST\n" if defined $opt->{test} && $level[3];
 
 	my $str = shift || '';
+        $str = $str . "\n" if defined $opt->{say};
 	my $name = shift;
 
 	print BOLD "Debug: " unless $level[1] || $level[2];
@@ -74,6 +76,7 @@ sub verbose {
 				|| ($opt->{test} && $level[1]);
 
 	print @_;
+        print "\n" if defined $opt->{say};
 	print "";
 }
 
